@@ -11,6 +11,7 @@ Requisitos:
 - Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta;
 
 Informações importantes:
+
 ## Documentação do CNAB
 
 | Descrição do campo  | Inicio | Fim | Tamanho | Comentário
