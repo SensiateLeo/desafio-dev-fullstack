@@ -1,44 +1,18 @@
-# Desafio programação - para vaga desenvolvedor
-
-Por favor leiam este documento do começo ao fim, com muita atenção.
-O intuito deste teste é avaliar seus conhecimentos técnicos em programação.
-O teste consiste em parsear [este arquivo de texto(CNAB)](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt) e salvar suas informações(transações financeiras) em uma base de dados a critério do candidato.
-Este desafio deve ser feito por você em sua casa. Gaste o tempo que você quiser, porém normalmente você não deve precisar de mais do que algumas horas.
-
-# Instruções de entrega do desafio
-
-1. Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-2. Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-3. Por fim, envie via email o projeto ou o fork/link do projeto para seu contato Bycoders_ com cópia para rh@bycoders.com.br.
-
-# Descrição do projeto
+# Desafio programação - Descrição
 
 Você recebeu um arquivo CNAB com os dados das movimentações finanaceira de várias lojas.
-Precisamos criar uma maneira para que estes dados sejam importados para um banco de dados.
+Objetivo: criar uma maneira para que estes dados sejam importados para um banco de dados.
 
-Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
+Tarefa: criar uma interface web que aceite upload do [arquivo CNAB](https://github.com/ByCodersTec/desafio-ruby-on-rails/blob/master/CNAB.txt), normalize os dados e armazene-os em um banco de dados relacional e exiba essas informações em tela.
 
-**Sua aplicação web DEVE:**
+Requisitos:
 
-1. Ter uma tela (via um formulário) para fazer o upload do arquivo(pontos extras se não usar um popular CSS Framework )
-2. Interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **se atente as documentações** que estão logo abaixo.
-3. Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta
-4. Ser escrita na sua linguagem de programação de preferência
-5. Ser simples de configurar e rodar, funcionando em ambiente compatível com Unix (Linux ou Mac OS X). Ela deve utilizar apenas linguagens e bibliotecas livres ou gratuitas.
-6. Git com commits atomicos e bem descritos
-7. PostgreSQL, MySQL ou SQL Server
-8. Ter testes automatizados
-9. Docker compose (Pontos extras se utilizar)
-10. Readme file descrevendo bem o projeto e seu setup
-11. Incluir informação descrevendo como consumir o endpoint da API
+- A aplicação deve interpretar ("parsear") o arquivo recebido, normalizar os dados, e salvar corretamente a informação em um banco de dados relacional, **de acordo com as documentações** que estão logo abaixo;
+- Exibir uma lista das operações importadas por lojas, e nesta lista deve conter um totalizador do saldo em conta;
 
-**Sua aplicação web não precisa:**
+Informações importantes:
 
-1. Lidar com autenticação ou autorização (pontos extras se ela fizer, mais pontos extras se a autenticação for feita via OAuth).
-2. Ser escrita usando algum framework específico (mas não há nada errado em usá-los também, use o que achar melhor).
-3. Documentação da api.(Será um diferencial e pontos extras se fizer)
-
-# Documentação do CNAB
+## Documentação do CNAB
 
 | Descrição do campo  | Inicio | Fim | Tamanho | Comentário
 | ------------- | ------------- | -----| ---- | ------
@@ -51,7 +25,7 @@ Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https:
 | Dono da loja | 49 | 62 | 14 | Nome do representante da loja
 | Nome loja | 63 | 81 | 19 | Nome da loja
 
-# Documentação sobre os tipos das transações
+## Documentação sobre os tipos das transações
 
 | Tipo | Descrição | Natureza | Sinal |
 | ---- | -------- | --------- | ----- |
@@ -65,21 +39,93 @@ Sua tarefa é criar uma interface web que aceite upload do [arquivo CNAB](https:
 | 8 | Recebimento DOC | Entrada | + |
 | 9 | Aluguel | Saída | - |
 
-# Avaliação
-
-Seu projeto será avaliado de acordo com os seguintes critérios.
-
-1. Sua aplicação preenche os requerimentos básicos?
-2. Você documentou a maneira de configurar o ambiente e rodar sua aplicação?
-3. Você seguiu as instruções de envio do desafio?
-4. Qualidade e cobertura dos testes unitários.
-
-Adicionalmente, tentaremos verificar a sua familiarização com as bibliotecas padrões (standard libs), bem como sua experiência com programação orientada a objetos a partir da estrutura de seu projeto.
-
-# Referência
+### Referência
 
 Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/data-engineering
 
----
+# Setup
 
-Boa sorte!
+## Requisitos Técnicos
+
+Para executar esta aplicação, é necessário instalar em seu computador:
+
+- Java (preferencialmente 11 ou superior - https://www.oracle.com/java/technologies/downloads/);
+
+- Maven (https://maven.apache.org/install.html)
+
+- Node (https://nodejs.org/en/download/)
+
+- MySQL (https://www.mysql.com/downloads/)
+
+## Configuração
+
+A primeira coisa a se fazer é criar o esquema que irá conter o banco de dados no MySQL.
+
+Para isso, abra sua conexão no MySQL (por padrão a instância ficará no endereço http://localhost:3306) e execute o script contido na pasta '..\desafio-dev-fullstack\backend\src\main\resources\db\scripts' (se seu MySQL está configurado em outra porta ou com outro usuário/senha que não o padrão de instalção, é necessário alterar os parâmetros no arquivo 'config.properties' do backend);
+
+Uma vez que a conexão com o MySQL está aberta e o esquema foi criado, existem 2 maneiras de executar o projeto:
+
+### Executar os projetos 'backend' e 'frontend' separadamente:
+
+Para tanto, basta executar os projetos como se fossem dois projetos distintos através de sua IDE de preferência
+
+#### Backend:
+
+Antes de executar o projeto 'backend', certifique-se de executar o comando:
+
+'mvn clean install'
+
+Por padrão, o projeto 'backend' irá ser executado no endereço 'http://localhost:8080'
+
+Ao executar o backend, é possível executar os testes para avaliar a cobertura, testar as chamadas de API via Postamn ou semelhantes;
+
+#### Frontend:
+
+Antes de executar o projeto 'frontend', certifique-se de executar o comando
+
+'npm install' 
+
+Por padrão, o projeto 'frontend' irá ser executado no endereço 'http://localhost:3000'
+
+Note que para funcionar corretamente, é necessário que o projeto 'backend' esteja sendo executado juntamente com o 'frontend';
+
+### Executar os projetos em conjunto:
+
+Para executar os projetos em conjunto, vá até seu terminal, navegue até a pasta 'backend' do projeto e execute o comando:
+
+'mvn clean package'
+
+Esse comando vai se encarregar de construir o build de forma correta (Caso ocorra algum problema durante este processo de build, certifique-se que as versões '<nodeVersion>v14.15.5</nodeVersion>' e '<npmVersion>6.14.11</npmVersion>' do plugin no arquivo 'pom.xml' do backend são as mesmas instaladas em seu computador).
+
+Ao final desse processo, será criada uma pasta 'target' dentro de 'backend', e, dentro desta pasta, um arquivo .jar contendo o nome do projeto.
+
+Para executar, basta rodar o segunte comando na pasta 'target':
+
+'java -jar {nomeDoArquivo}.jar'
+
+Após executar este comando, acesse 'http://localhost:8080/' e você conseguirá interagir com a aplicação sem problemas
+
+## Interagindo com a aplicação
+
+Ao executar a aplicação e acessá-la através da URL, você verá uma tela simples com um formulário através do qual é possível fazer o upload de um arquivo de texto;
+
+Uma vez que seja feito o upload, o arquivo será enviado para o backend, que será processado de acordo com os requisitos e os dados serão salvos no banco de dados correspondente.
+
+Após esse processo, os dados já processados são carregados do backend e mostrados no formato de uma tabela para o usuário
+
+Ao final da tabela, é mostrado um campo com o saldo em conta após todas as movimentações listadas
+
+## Documentação API
+
+Para documentar a API, foi utilizado o Swagger. Sendo assim, para acessar a documentação, basta executar o 'backend' do projeto (instruções para executar foram descritas anteriormente) e, uma vez que a aplicação estiver rodando acesse:
+
+'http://localhost:8080/swagger-ui.html'
+
+A documentação dos endpoints implementados para a aplicação estarão em 'cnab-controller'
+
+Para se ter uma noção básica, foram implementados 2 endpoints:
+
+(GET) '/desafio/server/cnab' -> Retorna uma lista de transações salvas do arquivo CNAB
+
+(POST) '/desafio/server/cnab' -> Salva os dados do arquivo de texto CNAB
+
