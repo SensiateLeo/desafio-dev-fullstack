@@ -26,7 +26,7 @@ public class FileServiceTest {
                 "file",
                 "cnab.txt",
                 "text/plain",
-                "3201903010000014200096206760174753****3153153453JOÃO MACEDO   BAR DO JOÃO ".getBytes()
+                "3201903010000014200096206760174753****3153153453JOAO MACEDO   BAR DO JOAO ".getBytes()
         );
 
         String dateFormat = "yyyyMMdd";
@@ -40,7 +40,7 @@ public class FileServiceTest {
         assertEquals("09620676017", cnabs.get(0).getCpf());
         assertEquals("4753****3153", cnabs.get(0).getCartao());
         assertEquals(LocalTime.parse("153453", DateTimeFormatter.ofPattern("HHmmss")), cnabs.get(0).getHora());
-        assertEquals("JOÃO MACEDO   ", cnabs.get(0).getDonoLoja());
-        assertEquals("BAR DO JOÃO ", cnabs.get(0).getNomeLoja());
+        assertEquals("JOAO MACEDO   ", cnabs.get(0).getDonoLoja());
+        assertEquals("BAR DO JOAO ", cnabs.get(0).getNomeLoja());
     }
 }
