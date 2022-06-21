@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import databaseService from '../service/database.service'
 import './FileInput.css'
 
-const FileInput = () => {
+const FileInput = ({ setUploadedCnabs }) => {
     const inputRef = useRef(null);
     const [file, setFile] = useState(null);
     
@@ -24,6 +24,7 @@ const FileInput = () => {
     
       databaseService.saveCNAB(data).then(() => {
         setFile(null);
+        setUploadedCnabs(true);
       });
     };
 
