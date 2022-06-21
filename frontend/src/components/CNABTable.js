@@ -27,10 +27,13 @@ const CNABTable = ({ uploadedCnabs }) => {
 
     useEffect(() => {
       if (cnabs.length > 0) {
+        let total = 0;
         cnabs.forEach(cnab => {
-          if (indicesSoma.includes(cnab?.tipo)) setTotal(total + parseInt(cnab?.valor, 10));
-          else if (indicesSubt.includes(cnab?.tipo)) setTotal(total - parseInt(cnab?.valor, 10));
+          console.log(indicesSoma.includes(cnab?.tipo), indicesSubt.includes(cnab?.tipo))
+          if (indicesSoma.includes(cnab?.tipo)) total += parseInt(cnab?.valor, 10);
+          else if (indicesSubt.includes(cnab?.tipo)) total -= parseInt(cnab?.valor, 10);
         })
+        setTotal(total);
       }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cnabs]);
